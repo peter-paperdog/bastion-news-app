@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.td-title{
+  font-weight: bold;
+  color: blue;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+td img{
+  max-width: 400px;
+  height: auto;
+}
