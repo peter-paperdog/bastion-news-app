@@ -1,0 +1,19 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="contentType">Content Type:</label>
+    <select id="contentType" formControlName="contentType">
+      <option *ngFor="let type of contentTypes" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="query">Search:</label>
+    <input id="query" formControlName="query" type="text" placeholder="Search in news archive" />
+  </div>
+  <button type="submit" id="search">Search</button>
+</form>
