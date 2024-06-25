@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {NewsroomsService} from "./newsrooms.service";
+import {Component} from '@angular/core';
 import {JsonPipe, NgForOf} from "@angular/common";
-import { HttpClientModule } from '@angular/common/http';
+import {SearchformComponent} from "./searchform/searchform.component";
+import {SearchresultsComponent} from "./searchresults/searchresults.component";
+import {NewsroomsService} from "./newsrooms.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe, HttpClientModule, NgForOf],
+  imports: [JsonPipe, NgForOf, SearchformComponent, SearchresultsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'bastion-news-app';
-  items: any[] = [];
-
+  searchResults: any[] = [];
 
   constructor(private newsRoomsSrv: NewsroomsService) {
+    this.performSearch();
+  }
+
+  onSearch(filters: any): void {
+    this.performSearch();
+  }
+
+  performSearch(): void {
     this.newsRoomsSrv.listMaterials().subscribe(
-      _ => this.items = _.items
+      _ => this.searchResults = _.items
     );
   }
 }
