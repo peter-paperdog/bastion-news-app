@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-
+body{
+  color: white;
+}
 .td-title{
   font-weight: bold;
-  color: blue;
+  color: lightblue;
   text-transform: uppercase;
   vertical-align: top;
 }
