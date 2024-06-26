@@ -16,8 +16,9 @@ export class SearchformComponent {
   @Output() search = new EventEmitter<string>();
   searchForm: FormGroup;
 
-  contentTypes = ['All Content', 'Blog Posts', 'News'];
+  contentTypes = ['All Content', 'News', 'Pressrelease', 'Blog Posts'];
   categories = ['All Categories', 'Category 1', 'Category 2', 'Category 3'];
+
   constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       contentType: ['All Content'],
@@ -28,6 +29,6 @@ export class SearchformComponent {
 
   onSubmit(): void {
     const query = this.searchForm.value.query;
-      this.search.emit(this.searchForm.value);
+    this.search.emit(this.searchForm.value);
   }
 }

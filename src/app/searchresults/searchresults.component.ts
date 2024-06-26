@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {NewsroomsService} from "../newsrooms.service";
 import {NgForOf} from "@angular/common";
 
 @Component({
@@ -14,6 +13,6 @@ import {NgForOf} from "@angular/common";
 export class SearchresultsComponent {
   @Input() results: any[] = [];
 
-  constructor(private newsRoomsSrv: NewsroomsService) {
+  constructor() {
   }
 }
