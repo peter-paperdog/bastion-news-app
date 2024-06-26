@@ -13,3 +13,11 @@ td img{
   max-width: 400px;
   height: auto;
 }
+
+div.content{
+  max-width: 1280px;
+}
+div.container{
+  display: flex;
+  justify-content: center;
+}
