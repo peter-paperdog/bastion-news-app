@@ -1,0 +1,40 @@
+<div class="headline">
+  <h1>Latest news</h1>
+</div>
+
+<div *ngIf="newsData">
+  <div class="grid-item grid-item-full">
+    <div class="img_container">
+      <img [src]="newsData[0].image_thumbnail_medium"/>
+    </div>
+    <div class="text_container">
+      <p>{{newsData[0].published_at.text}}</p>
+      <h4>{{ newsData[0].header }}</h4>
+      <div [innerHTML]="newsData[0].body | truncateHtml:1000"></div>
+      <p class="read_more"><a [href]="newsData[0].url" target="_blank">Read more...</a></p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="grid-item">
+      <p>{{newsData[1].published_at.text}}</p>
+      <h4>{{ newsData[1].header }}</h4>
+      <img [src]="newsData[1].image_thumbnail_large"/>
+      <div [innerHTML]="newsData[1].body | truncateHtml:300"></div>
+      <p class="read_more"><a [href]="newsData[1].url" target="_blank">Read more...</a></p>
+    </div>
+    <div class="grid-item">
+      <p>{{newsData[2].published_at.text}}</p>
+      <h4>{{ newsData[2].header }}</h4>
+      <img [src]="newsData[2].image_thumbnail_large"/>
+      <div [innerHTML]="newsData[2].body | truncateHtml:300"></div>
+      <p class="read_more"><a [href]="newsData[2].url" target="_blank">Read more...</a></p>
+    </div>
+    <div class="grid-item">
+      <p>{{newsData[3].published_at.text}}</p>
+      <h4>{{ newsData[3].header }}</h4>
+      <img [src]="newsData[3].image_thumbnail_large"/>
+      <div [innerHTML]="newsData[3].body | truncateHtml:300"></div>
+      <p class="read_more"><a [href]="newsData[3].url" target="_blank">Read more...</a></p>
+    </div>
+  </div>
+</div>

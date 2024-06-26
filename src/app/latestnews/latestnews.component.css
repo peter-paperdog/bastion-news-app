@@ -1,0 +1,30 @@
+.grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  color: #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item-full {
+  width: 100%;
+  display: flex;
+}
+
+.grid-item img {
+  max-width: 100%;
+}
+
+.text_container{
+  padding: 0 20px;
+}
+p.read_more {
+  text-align: right;
+  font-weight: bold;
+}
