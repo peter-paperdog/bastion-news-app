@@ -1,2 +1,7 @@
-<app-searchform (search)="onSearch($event)"></app-searchform>
-<app-searchresults [results]="searchResults"></app-searchresults>
+<div class="container">
+  <div class="content">
+    <app-latestnews></app-latestnews>
+    <app-searchform (search)="onSearch($event)"></app-searchform>
+    <app-searchresults [results]="searchResults"></app-searchresults>
+  </div>
+</div>
