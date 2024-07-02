@@ -25,9 +25,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bastion-3766bb.webflow.css",
+              "src/assets/css/webflow.css",
+              "src/assets/css/normalize.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/webflow.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -85,12 +90,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bastion-3766bb.webflow.css",
+              "src/assets/css/webflow.css",
+              "src/assets/css/normalize.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/webflow.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,40 +1,167 @@
-<div class="headline">
-  <h1>Latest news</h1>
-</div>
-
-<div *ngIf="newsData">
-  <div class="grid-item grid-item-full">
-    <div class="img_container">
-      <img [src]="newsData[0].image_thumbnail_medium"/>
-    </div>
-    <div class="text_container">
-      <p>{{newsData[0].published_at.text}}</p>
-      <h4>{{ newsData[0].header }}</h4>
-      <div [innerHTML]="newsData[0].body | truncateHtml:1000"></div>
-      <p class="read_more"><a [href]="newsData[0].url" target="_blank">Read more...</a></p>
+<div class="navbar-holder">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar">
+    <div class="navbar-inner">
+      <a href="./index.html" class="brand w-nav-brand"><img src="assets/images/app-icon.png" loading="lazy" alt="" class="logo-img sm"><img src="assets/images/Vectors-Wrapper.svg" loading="lazy" alt="" class="logo-img"></a>
+      <nav role="navigation" class="nav-menu w-nav-menu">
+        <div class="nav-items">
+          <a href="#" class="nav-link w-nav-link">culture</a>
+          <a href="#" class="nav-link w-nav-link">services</a>
+          <a href="#" class="nav-link w-nav-link">insights</a>
+          <a href="#" class="nav-link w-nav-link">Recruitment</a>
+          <a href="./index.html" aria-current="page" class="nav-link w--current">Press</a>
+        </div>
+        <a data-w-id="bcb3c1fc-8401-252e-5a44-427593da3116" href="#" class="button-primary">
+          <div class="primary-button-inner">
+            <div class="button-copy">Get in touch</div>
+          </div>
+          <div class="button-overlay"></div>
+        </a>
+      </nav>
     </div>
   </div>
-  <div class="grid">
-    <div class="grid-item">
-      <p>{{newsData[1].published_at.text}}</p>
-      <h4>{{ newsData[1].header }}</h4>
-      <img [src]="newsData[1].image_thumbnail_large"/>
-      <div [innerHTML]="newsData[1].body | truncateHtml:300"></div>
-      <p class="read_more"><a [href]="newsData[1].url" target="_blank">Read more...</a></p>
+</div>
+<div class="subpage-hero long" *ngIf="newsData && newsData.length > 0">
+  <div class="subpage-inner large">
+    <div class="subpage-heading">
+      <h2 class="heading-2">Latest news</h2>
     </div>
-    <div class="grid-item">
-      <p>{{newsData[2].published_at.text}}</p>
-      <h4>{{ newsData[2].header }}</h4>
-      <img [src]="newsData[2].image_thumbnail_large"/>
-      <div [innerHTML]="newsData[2].body | truncateHtml:300"></div>
-      <p class="read_more"><a [href]="newsData[2].url" target="_blank">Read more...</a></p>
+    <a [href]="newsData[0].url" data-w-id="de50decc-8423-7e97-7680-4e91848f15a6" style="background-color:rgb(255,255,255)" href="#" class="main-news">
+      <div class="card-image">
+        <img [src]="newsData[0].image_thumbnail_medium" loading="lazy" width="608" height="352" alt=""
+             [srcset]="newsData[0].image_thumbnail_medium + ' 608w'"
+             sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, 46vw" class="image">
+      </div>
+      <div class="news-content">
+        <div class="date">{{ newsData[0].published_at.text | date: 'dd MMMM yyyy' }}</div>
+        <div class="card-content big">
+          <div class="heading-5 dark">{{ newsData[0].header }}</div>
+          <div class="body-copy sm dark" [innerHTML]="newsData[0].body | truncateHtml:1000"><br></div>
+          <p class="read_more"><a [href]="newsData[0].url" target="_blank">Read more...</a></p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="news-section" *ngIf="newsData && newsData.length > 1">
+  <div class="subpage-inner">
+    <div class="filter-section">
+      <div class="filter-elements">
+        <div class="filter active">
+          <div class="filter-copy big white">Filter 1</div>
+          <img src="assets/images/Vectors-Wrapper_3.svg" loading="lazy" width="20" height="20" alt="" class="vectors-wrapper-8">
+        </div>
+        <div class="filter">
+          <div class="filter-copy big">Filter 2</div>
+        </div>
+        <div class="filter">
+          <div class="filter-copy big">Filter 3</div>
+        </div>
+        <div class="filter">
+          <div class="filter-copy big">Filter 4</div>
+        </div>
+      </div>
+      <div class="search-field">
+        <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt="" class="vectors-wrapper-8">
+        <div class="search-label">Search Insights</div>
+      </div>
     </div>
-    <div class="grid-item">
-      <p>{{newsData[3].published_at.text}}</p>
-      <h4>{{ newsData[3].header }}</h4>
-      <img [src]="newsData[3].image_thumbnail_large"/>
-      <div [innerHTML]="newsData[3].body | truncateHtml:300"></div>
-      <p class="read_more"><a [href]="newsData[3].url" target="_blank">Read more...</a></p>
+    <div class="w-layout-grid grid">
+      <a *ngFor="let news of newsData.slice(1)" [id]="news.id" [href]="news.url" class="press-card" style="background-color: rgb(255, 255, 255)">
+        <div class="card-image">
+          <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt="" class="image">
+        </div>
+        <div class="news-content">
+          <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
+          <div class="card-content big">
+            <div class="heading-5 dark">{{ news.header }}</div>
+            <div class="body-copy sm dark">
+              <span class="ellipsis" [innerHTML]="news.body | truncateHtml:1000"></span><br>
+            </div>
+          </div>
+          <div class="filters">
+            <div class="filter-3" *ngFor="let filter of news.filters">
+              <div class="filter-item">
+                <div class="filter-copy">{{ filter }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <a data-w-id="684cffae-0da3-e8d5-0bb8-25c3f0f0c4e4" href="#" class="button-secondary">
+      <div class="primary-button-inner">
+        <div class="button-copy"(click)="loadMore()" *ngIf="!allLoaded">See More<br></div>
+      </div>
+      <div class="button-overlay"></div>
+    </a>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="get-in-touch-copy wide">
+    <h2 class="heading-2 centered">Lorem ipsum dolor sit amet, porta ac velit qui</h2>
+    <a data-w-id="bcb3c1fc-8401-252e-5a44-427593da3116" href="#" class="button-primary">
+      <div class="primary-button-inner">
+        <div class="button-copy">Get in touch</div>
+      </div>
+      <div class="button-overlay"></div>
+    </a>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <div class="content">
+      <div class="contact"><img src="assets/images/Vectors-Wrapper_2.svg" loading="lazy" width="185.625" height="36"
+                                alt="" class="logo">
+        <div class="address">35-41 Folgate Street, Spitalfields, London, E1 6BX</div>
+        <div class="social-icons">
+          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons.svg" loading="lazy"
+                                                              width="32" height="32" alt="" class="social-icon-img"></a>
+          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-1.svg" loading="lazy"
+                                                              width="32" height="32" alt="" class="social-icon-img"></a>
+          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-2.svg" loading="lazy"
+                                                              width="32" height="32" alt="" class="social-icon-img"></a>
+        </div>
+      </div>
+      <div class="footer-links"></div>
+      <div class="footer-links">
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Culture</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Services</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Insights</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Get In Touch</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Recruitment</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Press</div>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Folgate</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">G2M</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">OneVoice</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link">
+          <div class="hyper-link-text">Pinpoint</div>
+        </a>
+        <a href="#" target="_blank" class="hyper-link"></a>
+      </div>
+    </div>
+    <div class="text-15">© 2024 Bastion. All rights reserved. <a href="#" class="privacy-policy">Privacy Policy</a>
     </div>
   </div>
 </div>
