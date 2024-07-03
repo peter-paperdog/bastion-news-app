@@ -4,7 +4,6 @@ import {SearchformComponent} from "./searchform/searchform.component";
 import {SearchresultsComponent} from "./searchresults/searchresults.component";
 import {NewsroomsService} from "./newsrooms.service";
 import {LatestnewsComponent} from "./latestnews/latestnews.component";
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,16 +16,16 @@ export class AppComponent {
   searchResults: any[] = [];
 
   constructor(private newsRoomsSrv: NewsroomsService) {
-    this.performSearch();
+    //this.performSearch();
   }
 
   onSearch(filters: any): void {
-    this.performSearch();
+    //this.performSearch();
   }
 
-  performSearch(): void {
+  /*performSearch(): void {
     this.newsRoomsSrv.listMaterials().subscribe(
       _ => this.searchResults = _.items
     );
-  }
+  }*/
 }

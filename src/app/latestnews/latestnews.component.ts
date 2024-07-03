@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NewsroomsService} from '../newsrooms.service';
 import {CommonModule, JsonPipe, NgIf} from '@angular/common';
 import {TruncateHtmlPipe} from '../truncate-html.pipe';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-latestnews',
@@ -10,51 +11,66 @@ import {TruncateHtmlPipe} from '../truncate-html.pipe';
     JsonPipe,
     NgIf,
     TruncateHtmlPipe,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './latestnews.component.html',
   styleUrls: ['./latestnews.component.css']
 })
-export class LatestnewsComponent implements OnInit{
+export class LatestnewsComponent implements OnInit {
   newsData: any[] = [];
-  offset: number = 0;
+  allNewsData: any[] = [];
+  searchResults: any[] = [];
+  allSearchResults: any[] = [];
+  searchQuery: string = '';
+  totalItemCount: number = 0;
   limit: number = 7;
   allLoaded: boolean = false;
+  searchOffset: number = 0;
 
-  constructor(private newsRoomsSrv: NewsroomsService) {
-  }
+  constructor(private newsRoomsSrv: NewsroomsService) { }
 
   ngOnInit(): void {
-    this.loadInitialData();
+    this.loadAllData();
   }
 
-  loadInitialData() {
-    this.newsRoomsSrv.listMaterials('news', this.limit)
+  loadAllData() {
+    this.newsRoomsSrv.listAllMaterials('news', this.limit)
       .subscribe(
-        (response: any) => {
-          this.newsData = response.items;
+        (allItems: any[]) => {
+          this.allNewsData = allItems;
+          this.newsData = allItems.slice(0, this.limit);
+          this.totalItemCount = allItems.length;
         },
         (error) => {
-          console.error('Error fetching news:', error);
+          console.error('Error fetching all news:', error);
         }
       );
   }
 
   loadMore() {
-    this.offset += this.limit-1;
-    console.log(this.offset += this.limit)
-    this.newsRoomsSrv.listMaterials('news', this.limit-1, this.offset)
-      .subscribe(
-        (data: any) => {
-          if (data.items.length === 0) {
-            this.allLoaded = true;
-          } else {
-            this.newsData.push(...data.items);
-          }
-        },
-        (error) => {
-          console.error('Error fetching more news:', error);
-        }
-      );
+    const nextOffset = this.newsData.length;
+    const nextItems = this.allNewsData.slice(nextOffset, nextOffset + this.limit-1);
+    this.newsData.push(...nextItems);
+  }
+
+  loadMoreSearchResults() {
+    const nextSearchOffset = this.searchResults.length;
+    const nextSearchItems = this.allSearchResults.slice(nextSearchOffset, nextSearchOffset + this.limit - 1);
+    this.searchResults.push(...nextSearchItems);
+  }
+
+  search(): void {
+    if (this.searchQuery.trim() === '') {
+      this.searchResults = [];
+      this.searchOffset = 0;
+      return;
+    }
+    this.allSearchResults = this.allNewsData.filter(news => {
+      const foundInHeader = news.header.toLowerCase().includes(this.searchQuery.toLowerCase());
+      return foundInHeader;
+    });
+    this.searchResults = this.allSearchResults.slice(0, this.limit - 1);
+    this.searchOffset = this.limit - 1;
   }
 }

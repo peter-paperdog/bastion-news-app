@@ -96,7 +96,6 @@
               "src/assets/css/normalize.css"
             ],
             "scripts": [
-              "src/assets/js/webflow.js"
             ]
           }
         }

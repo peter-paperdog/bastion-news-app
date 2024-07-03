@@ -1,16 +1,14 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-searchform',
+  templateUrl: './searchform.component.html',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    NgForOf
+    ReactiveFormsModule
   ],
-  templateUrl: './searchform.component.html',
-  styleUrl: './searchform.component.css'
+  styleUrls: ['./searchform.component.css']
 })
 export class SearchformComponent {
   @Output() search = new EventEmitter<string>();
@@ -29,6 +27,6 @@ export class SearchformComponent {
 
   onSubmit(): void {
     const query = this.searchForm.value.query;
-    this.search.emit(this.searchForm.value);
+    this.search.emit(query);
   }
 }

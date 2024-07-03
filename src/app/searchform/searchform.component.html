@@ -11,9 +11,9 @@
       <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
     </select>
   </div>
-  <div>
-    <label for="query">Search:</label>
-    <input id="query" formControlName="query" type="text" placeholder="Search in news archive" />
+  <div class="search-field">
+    <input type="text" formControlName="query" class="searchinput" placeholder="Search...">
+    <button type="button" (click)="onSubmit()">Search</button>
   </div>
   <button type="submit" id="search">Search</button>
 </form>

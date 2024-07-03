@@ -1,14 +1,17 @@
 <div class="navbar-holder">
-  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease"
+       role="banner" class="navbar">
     <div class="navbar-inner">
-      <a href="./index.html" class="brand w-nav-brand"><img src="assets/images/app-icon.png" loading="lazy" alt="" class="logo-img sm"><img src="assets/images/Vectors-Wrapper.svg" loading="lazy" alt="" class="logo-img"></a>
-      <nav role="navigation" class="nav-menu w-nav-menu">
+      <a href="/index.html" class="brand w-nav-brand"><img src="assets/images/app-icon.png" loading="lazy" alt=""
+                                                           class="logo-img sm"><img
+        src="assets/images/Vectors-Wrapper.svg" loading="lazy" alt="" class="logo-img"></a>
+      <nav role="navigation" class="nav-menu">
         <div class="nav-items">
-          <a href="#" class="nav-link w-nav-link">culture</a>
-          <a href="#" class="nav-link w-nav-link">services</a>
-          <a href="#" class="nav-link w-nav-link">insights</a>
-          <a href="#" class="nav-link w-nav-link">Recruitment</a>
-          <a href="./index.html" aria-current="page" class="nav-link w--current">Press</a>
+          <a href="#" class="nav-link nav-link">culture</a>
+          <a href="#" class="nav-link nav-link">services</a>
+          <a href="#" class="nav-link nav-link">insights</a>
+          <a href="#" class="nav-link nav-link">Recruitment</a>
+          <a href="index.html" aria-current="page" class="nav-link">Press</a>
         </div>
         <a data-w-id="bcb3c1fc-8401-252e-5a44-427593da3116" href="#" class="button-primary">
           <div class="primary-button-inner">
@@ -25,18 +28,18 @@
     <div class="subpage-heading">
       <h2 class="heading-2">Latest news</h2>
     </div>
-    <a [href]="newsData[0].url" data-w-id="de50decc-8423-7e97-7680-4e91848f15a6" style="background-color:rgb(255,255,255)" href="#" class="main-news">
+    <a [href]="newsData[0].url" data-w-id="de50decc-8423-7e97-7680-4e91848f15a6"
+       style="background-color:rgb(255,255,255)" href="#" class="main-news">
       <div class="card-image">
         <img [src]="newsData[0].image_thumbnail_medium" loading="lazy" width="608" height="352" alt=""
-             [srcset]="newsData[0].image_thumbnail_medium + ' 608w'"
+             [srcset]="newsData[0].image_thumbnail_medium + ' 600w'"
              sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, 46vw" class="image">
       </div>
       <div class="news-content">
         <div class="date">{{ newsData[0].published_at.text | date: 'dd MMMM yyyy' }}</div>
         <div class="card-content big">
           <div class="heading-5 dark">{{ newsData[0].header }}</div>
-          <div class="body-copy sm dark" [innerHTML]="newsData[0].body | truncateHtml:1000"><br></div>
-          <p class="read_more"><a [href]="newsData[0].url" target="_blank">Read more...</a></p>
+          <div class="body-copy sm dark" [innerHTML]="newsData[0].body | truncateHtml:400"><br></div>
         </div>
       </div>
     </a>
@@ -49,7 +52,8 @@
       <div class="filter-elements">
         <div class="filter active">
           <div class="filter-copy big white">Filter 1</div>
-          <img src="assets/images/Vectors-Wrapper_3.svg" loading="lazy" width="20" height="20" alt="" class="vectors-wrapper-8">
+          <img src="assets/images/Vectors-Wrapper_3.svg" loading="lazy" width="20" height="20" alt=""
+               class="vectors-wrapper-8">
         </div>
         <div class="filter">
           <div class="filter-copy big">Filter 2</div>
@@ -62,14 +66,19 @@
         </div>
       </div>
       <div class="search-field">
-        <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt="" class="vectors-wrapper-8">
-        <div class="search-label">Search Insights</div>
+        <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
+             class="vectors-wrapper-8">
+        <input class="searchinput search-label" type="text" [(ngModel)]="searchQuery" placeholder="Search Insights"
+               (input)="search()">
       </div>
     </div>
     <div class="w-layout-grid grid">
-      <a *ngFor="let news of newsData.slice(1)" [id]="news.id" [href]="news.url" class="press-card" style="background-color: rgb(255, 255, 255)">
+      <a *ngFor="let news of (searchQuery.trim() === '' ? newsData.slice(1) : searchResults)" [id]="news.id"
+         [href]="news.url" class="press-card"
+         style="background-color: rgb(255, 255, 255)">
         <div class="card-image">
-          <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt="" class="image">
+          <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt=""
+               class="image">
         </div>
         <div class="news-content">
           <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
@@ -91,7 +100,11 @@
     </div>
     <a data-w-id="684cffae-0da3-e8d5-0bb8-25c3f0f0c4e4" href="#" class="button-secondary">
       <div class="primary-button-inner">
-        <div class="button-copy"(click)="loadMore()" *ngIf="!allLoaded">See More<br></div>
+        <div class="button-copy"
+             (click)="searchQuery.trim() === '' ? loadMore() : loadMoreSearchResults()"
+             *ngIf="searchQuery.trim() === '' ? !allLoaded : searchResults.length < allSearchResults.length">
+          See More<br>
+        </div>
       </div>
       <div class="button-overlay"></div>
     </a>
