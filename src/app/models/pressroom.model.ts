@@ -6,10 +6,10 @@ export interface Pressroom {
   source_id: number;
   header: string;
   description: string;
-  all_tags_formatted: Tag[];
+  all_tags: Tag[];
 }
 
 export interface Tag {
-  name_for_pressroom: string;
+  name: string;
   level: number;
 }

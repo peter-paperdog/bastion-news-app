@@ -28,7 +28,7 @@ export class NewsroomsService {
   // Method to search materials
   searchMaterials(
     query: string = '',
-    typeOfMedia: string = 'news',
+    typeOfMedia: string = '',
     limit: number = 7,
     page: number = 1,
     strict: boolean = true,
@@ -36,7 +36,7 @@ export class NewsroomsService {
     callback: string = '',
     pressroom: string = ''
   ): Observable<any> {
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('format', 'json')
       .set('query', query)
       .set('type_of_media', typeOfMedia)
@@ -47,7 +47,7 @@ export class NewsroomsService {
       .set('tags', tags)
       .set('callback', callback);
 
-    return this.http.get(`${this.apiUrl}/search/${this.apiKey}`, {params});
+    return this.http.get(`${this.apiUrl}/search/${this.apiKey}`, { params });
   }
   getCategories(
     pressroom: string = ''
