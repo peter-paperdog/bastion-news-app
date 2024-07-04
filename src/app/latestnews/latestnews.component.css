@@ -7,3 +7,26 @@
   border: none;
 }
 
+.main-news, .press-card {
+  transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out!important;
+}
+
+.main-news:hover, .press-card:hover {
+  background-color: #041F35!important;
+}
+
+.main-news:hover .heading-5, .press-card:hover .heading-5 {
+  color: #FFFFFF!important;
+}
+
+.main-news:hover .body-copy, .press-card:hover .body-copy {
+  color: #E7EBEF!important;
+}
+
+.heading-5 {
+  transition: color 0.35s ease-in-out!important;
+}
+
+.body-copy {
+  transition: color 0.35s ease-in-out!important;
+}
