@@ -7,19 +7,37 @@
   border: none;
 }
 
-.main-news, .press-card {
+.press-card, .main-news {
   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out !important;
 }
 
-.main-news:hover, .press-card:hover {
-  background-color: #041F35 !important;
-}
-
-.main-news:hover .heading-5, .press-card:hover .heading-5 {
+.main-news {
+  background-color: rgba(255, 255, 255, 0.2) !important;
   color: #FFFFFF !important;
 }
 
-.main-news:hover .body-copy, .press-card:hover .body-copy {
+.main-news:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(12px);
+}
+
+.main-news .heading-5 {
+  color: #FFFFFF !important;
+}
+
+.main-news .body-copy {
+  color: #FFFFFF !important;
+}
+
+.press-card:hover {
+  background-color: #041F35 !important;
+}
+
+.press-card:hover .heading-5 {
+  color: #FFFFFF !important;
+}
+
+.press-card:hover .body-copy {
   color: #E7EBEF !important;
 }
 
@@ -37,54 +55,25 @@
   }
 }
 
-.dropdown-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-self: stretch;
-}
-
-.dropdown-elements {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.dropdown {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.custom-dropdown {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 421px;
-  height: 44px;
-  padding: 12px 16px;
+.dropdown-link {
+  background-color: var(--color--white)!important;
   border-radius: 44px;
-  background: #FFF;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 12px 36px 12px 16px;
 }
 
-.custom-dropdown select,
-.custom-dropdown input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  line-height: 1.5;
+.select {
   outline: none;
 }
-
-.dropdown-label {
-  color: #041F35;
-  font-family: var(--font--body);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-size: 1rem;
+  padding-right: 1.5rem;
+  border: none;
+  color: inherit;
+  background-color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
-
-

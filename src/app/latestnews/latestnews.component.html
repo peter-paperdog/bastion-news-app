@@ -20,36 +20,30 @@
     </a>
   </div>
 </div>
+
 <div class="news-section" *ngIf="newsData && newsData.length > 1">
   <div class="subpage-inner">
-    <div class="dropdown-section" *ngIf="pressroom">
-      <div class="dropdown-elements">
-        <div class="dropdown">
-          <div class="custom-dropdown">
-            <label for="contentType" class="dropdown-label">Type of Media:</label>
-            <select id="contentType" [(ngModel)]="selectedContentType" (change)="applyFilters(); search()">
-              <option *ngFor="let type of contentTypes" [value]="type">{{ type }}</option>
-            </select>
-          </div>
+    <div class="filter-section" *ngIf="pressroom">
+      <div class="dropdown w-dropdown">
+          <div class="icon-4 w-icon-dropdown-toggle"></div>
+          <select id="contentType" [(ngModel)]="selectedContentType" (change)="applyFilters(); search()" class="dropdown-link select">
+            <option class="dropdown-inner" *ngFor="let type of contentTypes" [value]="type">{{ type }}</option>
+          </select>
       </div>
-        <div class="dropdown">
-          <div class="custom-dropdown">
-            <label for="contentType" class="dropdown-label">Type of Media:</label>
-            <select id="category" [(ngModel)]="selectedTag" (change)="applyFilters(); search()">
-              <option>Select tag...</option>
-              <option *ngFor="let tag of tags" [value]="tag">{{ tag }}</option>
-            </select>
-          </div>
-        </div>
-        <div class="dropdown">
-          <div class="custom-dropdown">
-            <input class="searchinput search-label" id="searchQuery" type="text" [(ngModel)]="searchQuery"
-                   placeholder="Search Insights" (input)="search()">
-          </div>
-        </div>
+      <div class="dropdown w-dropdown">
+        <div class="icon-4 w-icon-dropdown-toggle"></div>
+        <select id="category" [(ngModel)]="selectedTag" (change)="applyFilters(); search()"
+                class="dropdown-link select">
+          <option *ngFor="let tag of tags" [value]="tag">{{ tag }}</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
+             class="vectors-wrapper-8">
+        <input class="searchinput search-label" type="text" [(ngModel)]="searchQuery" placeholder="Search News"
+               (input)="search()">
       </div>
     </div>
-
     <div class="w-layout-grid grid">
       <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" class="press-card"
          style="background-color: rgb(255, 255, 255)">
@@ -69,71 +63,70 @@
       </a>
     </div>
 
-    <a data-w-id="684cffae-0da3-e8d5-0bb8-25c3f0f0c4e4" href="#" class="button-secondary">
+    <a href="#" class="button-secondary" (click)="loadMore()">
       <div class="primary-button-inner">
-        <div class="button-copy" (click)="loadMore()">See More<br></div>
+        <div class="button-copy">See More</div>
       </div>
       <div class="button-overlay"></div>
     </a>
-  </div>
-</div>
 
-<div class="footer">
-  <div class="footer-inner">
-    <div class="content">
-      <div class="contact"><img src="assets/images/Vectors-Wrapper_2.svg" loading="lazy" width="185.625" height="36"
-                                alt="" class="logo">
-        <div class="address">35-41 Folgate Street, Spitalfields, London, E1 6BX</div>
-        <div class="social-icons">
-          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons.svg" loading="lazy"
-                                                              width="32" height="32" alt=""
-                                                              class="social-icon-img"></a>
-          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-1.svg" loading="lazy"
-                                                              width="32" height="32" alt=""
-                                                              class="social-icon-img"></a>
-          <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-2.svg" loading="lazy"
-                                                              width="32" height="32" alt=""
-                                                              class="social-icon-img"></a>
+
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="content">
+          <div class="contact"><img src="assets/images/Vectors-Wrapper_2.svg" loading="lazy" width="185.625" height="36"
+                                    alt="" class="logo">
+            <div class="address">35-41 Folgate Street, Spitalfields, London, E1 6BX</div>
+            <div class="social-icons">
+              <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons.svg" loading="lazy"
+                                                                  width="32" height="32" alt=""
+                                                                  class="social-icon-img"></a>
+              <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-1.svg" loading="lazy"
+                                                                  width="32" height="32" alt=""
+                                                                  class="social-icon-img"></a>
+              <a href="#" class="social-icon w-inline-block"><img src="assets/images/Social-Icons-2.svg" loading="lazy"
+                                                                  width="32" height="32" alt=""
+                                                                  class="social-icon-img"></a>
+            </div>
+          </div>
+          <div class="footer-links"></div>
+          <div class="footer-links">
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Culture</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Services</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Insights</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Get In Touch</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Recruitment</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Press</div>
+            </a>
+          </div>
+          <div class="footer-links">
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Folgate</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">G2M</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">OneVoice</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link">
+              <div class="hyper-link-text">Pinpoint</div>
+            </a>
+            <a href="#" target="_blank" class="hyper-link"></a>
+          </div>
+        </div>
+        <div class="text-15">© 2024 Bastion. All rights reserved. <a href="#" class="privacy-policy">Privacy Policy</a>
         </div>
       </div>
-      <div class="footer-links"></div>
-      <div class="footer-links">
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Culture</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Services</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Insights</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Get In Touch</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Recruitment</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Press</div>
-        </a>
-      </div>
-      <div class="footer-links">
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Folgate</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">G2M</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">OneVoice</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link">
-          <div class="hyper-link-text">Pinpoint</div>
-        </a>
-        <a href="#" target="_blank" class="hyper-link"></a>
-      </div>
     </div>
-    <div class="text-15">© 2024 Bastion. All rights reserved. <a href="#" class="privacy-policy">Privacy Policy</a>
-    </div>
-  </div>
-</div>

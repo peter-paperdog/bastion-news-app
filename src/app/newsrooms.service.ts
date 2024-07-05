@@ -14,15 +14,16 @@ export class NewsroomsService {
   }
 
   // Method to list all materials
-  listMaterials(typeOfMedia: string = 'news', limit: number = 20, offset: number = 0, order: string = 'published'): Observable<any> {
+  listMaterials(typeOfMedia: string = '', tags: string = '', limit: number = 20, offset: number = 0, order: string = 'published'): Observable<any> {
     let params = new HttpParams()
       .set('format', 'json')
       .set('type_of_media', typeOfMedia)
+      .set('tags', tags)
       .set('limit', limit.toString())
       .set('offset', offset.toString())
       .set('order', order);
 
-    return this.http.get(`${this.apiUrl}/list/${this.apiKey}`, {params});
+    return this.http.get(`${this.apiUrl}/list/${this.apiKey}`, { params });
   }
 
   // Method to search materials
@@ -30,7 +31,7 @@ export class NewsroomsService {
     query: string = '',
     typeOfMedia: string = '',
     limit: number = 7,
-    page: number = 1,
+    page: number = 0,
     strict: boolean = true,
     tags: string = '',
     callback: string = '',
@@ -47,8 +48,9 @@ export class NewsroomsService {
       .set('tags', tags)
       .set('callback', callback);
 
-    return this.http.get(`${this.apiUrl}/search/${this.apiKey}`, { params });
+    return this.http.get(`${this.apiUrl}/search/${this.apiKey}`, {params});
   }
+
   getCategories(
     pressroom: string = ''
   ): Observable<any> {
