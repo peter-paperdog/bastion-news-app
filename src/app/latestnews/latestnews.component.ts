@@ -4,6 +4,7 @@ import {CommonModule, JsonPipe, NgIf} from '@angular/common';
 import {TruncateHtmlPipe} from '../truncate-html.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Pressroom} from "../models/pressroom.model";
+import {CustomSelectComponent} from "../custom-select/custom-select.component";
 
 @Component({
   selector: 'app-latestnews',
@@ -14,7 +15,8 @@ import {Pressroom} from "../models/pressroom.model";
     TruncateHtmlPipe,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CustomSelectComponent
   ],
   templateUrl: './latestnews.component.html',
   styleUrls: ['./latestnews.component.css']
@@ -71,13 +73,13 @@ export class LatestnewsComponent implements OnInit {
 
   applyFilters() {
     if (this.selectedContentType === 'All content' && this.selectedTag === 'All categories') {
-      this.filteredNewsData = this.newsData.slice(0, this.limit);
+      this.filteredNewsData = this.newsData.slice(0, this.limit - 1);
     } else {
       this.filteredNewsData = this.newsData.filter(item => {
         const contentTypeMatch = this.selectedContentType === 'All content' || item.type_of_media === this.selectedContentType;
         const tagMatch = this.selectedTag === 'All categories' || this.matchTags(item.tags, this.selectedTag);
         return contentTypeMatch && tagMatch;
-      }).slice(0, this.limit);
+      }).slice(0, this.limit - 1);
     }
   }
 
@@ -140,4 +142,15 @@ export class LatestnewsComponent implements OnInit {
     );
   }
 
+  onContentTypeSelected(selectedOption: string): void {
+    this.selectedContentType = selectedOption;
+    this.applyFilters();
+    this.search();
+  }
+
+  onTagSelected(selectedOption: string): void {
+    this.selectedTag = selectedOption;
+    this.applyFilters();
+    this.search();
+  }
 }

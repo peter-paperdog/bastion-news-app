@@ -55,25 +55,3 @@
   }
 }
 
-.dropdown-link {
-  background-color: var(--color--white)!important;
-  border-radius: 44px;
-  width: 100%;
-  padding: 12px 36px 12px 16px;
-}
-
-.select {
-  outline: none;
-}
-.select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-size: 1rem;
-  padding-right: 1.5rem;
-  border: none;
-  color: inherit;
-  background-color: inherit;
-  font: inherit;
-  cursor: pointer;
-}

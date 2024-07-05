@@ -24,19 +24,17 @@
 <div class="news-section" *ngIf="newsData && newsData.length > 1">
   <div class="subpage-inner">
     <div class="filter-section" *ngIf="pressroom">
-      <div class="dropdown w-dropdown">
-          <div class="icon-4 w-icon-dropdown-toggle"></div>
-          <select id="contentType" [(ngModel)]="selectedContentType" (change)="applyFilters(); search()" class="dropdown-link select">
-            <option class="dropdown-inner" *ngFor="let type of contentTypes" [value]="type">{{ type }}</option>
-          </select>
-      </div>
-      <div class="dropdown w-dropdown">
-        <div class="icon-4 w-icon-dropdown-toggle"></div>
-        <select id="category" [(ngModel)]="selectedTag" (change)="applyFilters(); search()"
-                class="dropdown-link select">
-          <option *ngFor="let tag of tags" [value]="tag">{{ tag }}</option>
-        </select>
-      </div>
+      <app-custom-select
+        [options]="contentTypes"
+        [selectedOption]="selectedContentType"
+        (optionSelected)="onContentTypeSelected($event)"
+      ></app-custom-select>
+
+      <app-custom-select
+        [options]="tags"
+        [selectedOption]="selectedTag"
+        (optionSelected)="onTagSelected($event)"
+      ></app-custom-select>
       <div class="search-field">
         <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
              class="vectors-wrapper-8">
