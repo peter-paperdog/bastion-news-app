@@ -1,0 +1,13 @@
+<div class="custom-select-wrapper">
+  <div class="custom-select" [class.open]="isOpen" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+    <div class="dropdown-toggle">
+      <div class="icon-4 w-icon-dropdown-toggle"></div>
+      {{ selectedOption }}
+    </div>
+    <ul class="options" *ngIf="isOpen">
+      <li *ngFor="let option of options" (click)="selectOption(option, $event)">
+        {{ option }}
+      </li>
+    </ul>
+  </div>
+</div>

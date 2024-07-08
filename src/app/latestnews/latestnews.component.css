@@ -1,6 +1,7 @@
 .searchinput {
   border: none;
   outline: none;
+  cursor: grab;
 }
 
 .searchinput:focus {
@@ -54,4 +55,8 @@
     padding: 16px;
   }
 }
+.main-date {
+  color:#E7EBEF;
+}
+
 

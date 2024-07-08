@@ -47,7 +47,6 @@ export class LatestnewsComponent implements OnInit {
     this.newsRoomsSrv.listMaterials('', '', this.limit)
       .subscribe(
         (response: any) => {
-          console.log('Initial Data:', response);
           this.newsData = response.items;
           this.filteredNewsData = this.newsData.slice(1, this.limit + 1);
         },
@@ -61,7 +60,6 @@ export class LatestnewsComponent implements OnInit {
     this.newsRoomsSrv.getCategories()
       .subscribe(
         (response: any) => {
-          console.log('Categories:', response);
           this.pressroom = response.pressroom;
           this.tags = ['All categories', ...response.pressroom.all_tags.map((tag: any) => tag.name)];
         },
@@ -104,7 +102,6 @@ export class LatestnewsComponent implements OnInit {
     )
       .subscribe(
         (data: any) => {
-          console.log('Search Results:', data);
           this.searchResults = data.search_result.items || [];
           this.filteredNewsData = this.searchResults.slice(0, this.limit - 1);
         },
@@ -114,33 +111,68 @@ export class LatestnewsComponent implements OnInit {
       );
   }
 
-  loadMore() {
+  loadMore(event: Event) {
+    event.preventDefault();
     this.offset += this.limit - 1;
-    this.newsRoomsSrv.listMaterials(
-      this.selectedContentType === 'All content' ? '' : this.selectedContentType,
-      this.selectedTag === 'All categories' ? '' : this.selectedTag,
-      this.limit - 1,
-      this.offset
-    ).subscribe(
-      (data: any) => {
-        console.log('Load More Data:', data);
-        if (data.items.length === 0) {
-          this.allLoaded = true;
-        } else {
-          this.newsData.push(...data.items);
-          this.filteredNewsData = [...this.filteredNewsData, ...data.items];
+
+    const isFiltered = this.selectedContentType !== 'All content' || this.selectedTag !== 'All categories';
+
+    if (isFiltered) {
+      let formattedTags = this.selectedTag !== 'All categories' ? this.selectedTag.replace(/\s+/g, ',') : '';
+      let formattedQuery = this.searchQuery ? this.searchQuery.trim() + '*' : '';
+
+      this.newsRoomsSrv.searchMaterials(
+        formattedQuery,
+        this.selectedContentType === 'All content' ? '' : this.selectedContentType,
+        this.limit - 1,
+        this.offset,
+        true,
+        formattedTags
+      ).subscribe(
+        (data: any) => {
+          if (data.search_result.items.length === 0) {
+            this.allLoaded = true;
+          } else {
+            this.newsData.push(...data.search_result.items);
+            this.filteredNewsData = [...this.filteredNewsData, ...data.search_result.items];
+          }
+        },
+        (error: any) => {
+          console.error('Error fetching more filtered news:', error);
+        },
+        () => {
+          if (this.filteredNewsData.length >= this.newsData.length) {
+            this.allLoaded = true;
+          }
         }
-      },
-      (error) => {
-        console.error('Error fetching more news:', error);
-      },
-      () => {
-        if (this.filteredNewsData.length >= this.newsData.length) {
-          this.allLoaded = true;
+      );
+    } else {
+      this.newsRoomsSrv.listMaterials(
+        '',
+        '',
+        this.limit - 1,
+        this.offset
+      ).subscribe(
+        (data: any) => {
+          if (data.items.length === 0) {
+            this.allLoaded = true;
+          } else {
+            this.newsData.push(...data.items);
+            this.filteredNewsData = [...this.filteredNewsData, ...data.items];
+          }
+        },
+        (error: any) => {
+          console.error('Error fetching more news:', error);
+        },
+        () => {
+          if (this.filteredNewsData.length >= this.newsData.length) {
+            this.allLoaded = true;
+          }
         }
-      }
-    );
+      );
+    }
   }
+
 
   onContentTypeSelected(selectedOption: string): void {
     this.selectedContentType = selectedOption;
