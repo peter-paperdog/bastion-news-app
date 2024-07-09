@@ -55,8 +55,9 @@
     padding: 16px;
   }
 }
+
 .main-date {
-  color:#E7EBEF;
+  color: #E7EBEF;
 }
 
 .button-secondary {
@@ -95,5 +96,28 @@
 
 .button-secondary:hover .button-copy {
   color: var(--color--blue);
+}
+
+.custom-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.press-card {
+  flex: 0 0 calc(32% - 8px);
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 991px) {
+  .press-card {
+    flex: 0 0 calc(48% - 8px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .press-card {
+    flex: 0 0 calc(100% - 8px);
+  }
 }
 

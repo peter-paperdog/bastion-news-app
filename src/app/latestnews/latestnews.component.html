@@ -41,27 +41,22 @@
                (input)="search()">
       </div>
     </div>
-    <div id="w-node-db2b7b0e-29a5-86ea-221b-ae7cbbb94cbe-2e98a119" class="layout-layout quick-stack wf-layout-layout">
-      <div id="w-node-db2b7b0e-29a5-86ea-221b-ae7cbbb94cbf-2e98a119" class="layout-cell">
-        <div *ngFor="let news of filteredNewsData">
-          <a id="w-node-_3e76ef94-6781-7565-823c-6cf8dca2b027-2e98a119" data-w-id="3e76ef94-6781-7565-823c-6cf8dca2b027"
-             [id]="news.id" [href]="news.url" class="press-card">
-            <div class="card-image">
-              <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt=""
-                   class="image">
-            </div>
-            <div class="news-content">
-              <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
-              <div class="card-content big">
-                <div class="heading-5 dark">{{ news.header }}</div>
-                <div class="body-copy sm dark">
-                  <span class="ellipsis">{{ news.body | truncateHtml:1000 }}</span><br>
-                </div>
-              </div>
-            </div>
-          </a>
+    <div class="custom-layout">
+      <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" class="press-card">
+        <div class="card-image">
+          <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt=""
+               class="image">
         </div>
-      </div>
+        <div class="news-content">
+          <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
+          <div class="card-content big">
+            <div class="heading-5 dark">{{ news.header }}</div>
+            <div class="body-copy sm dark">
+              <span class="ellipsis">{{ news.body | truncateHtml:1000 }}</span><br>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
     <a class="button-secondary w-inline-block" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()">
       <div class="primary-button-inner" style="filter: invert(0%) contrast(200%);">

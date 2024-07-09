@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
-import {JsonPipe, NgForOf} from "@angular/common";
+import {CommonModule, JsonPipe, NgForOf} from "@angular/common";
 import {SearchformComponent} from "./searchform/searchform.component";
 import {SearchresultsComponent} from "./searchresults/searchresults.component";
 import {NewsroomsService} from "./newsrooms.service";
 import {LatestnewsComponent} from "./latestnews/latestnews.component";
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [JsonPipe, NgForOf, SearchformComponent, SearchresultsComponent, LatestnewsComponent],
+  imports: [JsonPipe, NgForOf, SearchformComponent, SearchresultsComponent, LatestnewsComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
