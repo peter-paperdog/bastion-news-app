@@ -13,7 +13,6 @@ export class NewsroomsService {
   constructor(private http: HttpClient) {
   }
 
-  // Method to list all materials
   listMaterials(typeOfMedia: string = '', tags: string = '', limit: number = 20, offset: number = 0, order: string = 'published'): Observable<any> {
     let params = new HttpParams()
       .set('format', 'json')
@@ -26,7 +25,6 @@ export class NewsroomsService {
     return this.http.get(`${this.apiUrl}/list/${this.apiKey}`, { params });
   }
 
-  // Method to search materials
   searchMaterials(
     query: string = '',
     typeOfMedia: string = '',

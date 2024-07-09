@@ -41,7 +41,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class LatestnewsComponent implements OnInit {
   newsData: any[] = [];
   offset: number = 0;
-  limit: number = 7;
+  limit: number = 6;
   allLoaded: boolean = false;
   searchResults: any[] = [];
   searchQuery: string = '';
@@ -66,7 +66,7 @@ export class LatestnewsComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.newsData = response.items;
-          this.filteredNewsData = this.newsData.slice(0, this.limit - 1);
+          this.filteredNewsData = this.newsData.slice(0, this.limit);
         },
         (error) => {
           console.error('Error fetching news:', error);
@@ -94,15 +94,19 @@ export class LatestnewsComponent implements OnInit {
 
   applyFilters() {
     if (this.selectedContentType === 'All content' && this.selectedTag === 'All categories') {
-      this.filteredNewsData = this.newsData.slice(0, this.limit - 1);
+      this.filteredNewsData = this.newsData.slice(0, this.limit);
     } else {
       this.filteredNewsData = this.newsData.filter(item => {
         const contentTypeMatch = this.selectedContentType === 'All content' || item.type_of_media === this.selectedContentType;
         const tagMatch = this.selectedTag === 'All categories' || this.matchTags(item.tags, this.selectedTag);
         return contentTypeMatch && tagMatch;
-      }).slice(0, this.limit - 1);
+      }).slice(0, this.limit);
     }
+
+    this.offset = 0;
+    this.allLoaded = false;
   }
+
 
   matchTags(itemTags: any[], selectedTags: string): boolean {
     if (selectedTags === 'All categories') return true;
@@ -118,7 +122,7 @@ export class LatestnewsComponent implements OnInit {
     this.newsRoomsSrv.searchMaterials(
       formattedQuery,
       this.selectedContentType === 'All content' ? '' : this.selectedContentType,
-      this.limit - 1,
+      this.limit,
       1,
       true,
       formattedTags
@@ -126,7 +130,7 @@ export class LatestnewsComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.searchResults = data.search_result.items || [];
-          this.filteredNewsData = this.searchResults.slice(0, this.limit - 1);
+          this.filteredNewsData = this.searchResults.slice(0, this.limit);
         },
         (error) => {
           console.error('Error fetching search results:', error);
@@ -141,7 +145,7 @@ export class LatestnewsComponent implements OnInit {
     this.newsRoomsSrv.searchMaterials(
       this.searchQuery ? this.searchQuery.trim() + '*' : '',
       this.selectedContentType === 'All content' ? '' : this.selectedContentType,
-      this.limit - 1,
+      this.limit,
       Math.floor(this.offset / this.limit) + 1,
       true,
       this.selectedTag !== 'All categories' ? this.selectedTag.replace(/\s+/g, ',') : ''
@@ -163,7 +167,6 @@ export class LatestnewsComponent implements OnInit {
       }
     );
   }
-
 
 
   onContentTypeSelected(selectedOption: string): void {
