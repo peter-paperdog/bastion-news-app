@@ -1,19 +1,18 @@
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="contentType">Content Type:</label>
-    <select id="contentType" formControlName="contentType">
-      <option *ngFor="let type of contentTypes" [value]="type">{{ type }}</option>
-    </select>
-  </div>
-  <div>
-    <label for="category">Category:</label>
-    <select id="category" formControlName="category">
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
+<div class="filter-section" *ngIf="pressroom">
+  <app-custom-dropdown class="dropdown"
+                       [options]="contentTypes"
+                       [selectedOption]="selectedContentType"
+                       (optionSelected)="onContentTypeSelected($event)"
+  ></app-custom-dropdown>
+  <app-custom-dropdown class="dropdown"
+                       [options]="tags"
+                       [selectedOption]="selectedTag"
+                       (optionSelected)="onTagSelected($event)"
+  ></app-custom-dropdown>
   <div class="search-field">
-    <input type="text" formControlName="query" class="searchinput" placeholder="Search...">
-    <button type="button" (click)="onSubmit()">Search</button>
+    <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
+         class="vectors-wrapper-8">
+    <input class="searchinput search-label" type="text" [(ngModel)]="searchQuery" placeholder="Search News"
+           (input)="search()">
   </div>
-  <button type="submit" id="search">Search</button>
-</form>
+</div>

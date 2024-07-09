@@ -24,16 +24,16 @@
 <div class="news-section">
   <div class="subpage-inner">
     <div class="filter-section" *ngIf="pressroom">
-      <app-custom-select class="dropdown"
+      <app-custom-dropdown class="dropdown"
                          [options]="contentTypes"
                          [selectedOption]="selectedContentType"
                          (optionSelected)="onContentTypeSelected($event)"
-      ></app-custom-select>
-      <app-custom-select class="dropdown"
+      ></app-custom-dropdown>
+      <app-custom-dropdown class="dropdown"
                          [options]="tags"
                          [selectedOption]="selectedTag"
                          (optionSelected)="onTagSelected($event)"
-      ></app-custom-select>
+      ></app-custom-dropdown>
       <div class="search-field">
         <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
              class="vectors-wrapper-8">
@@ -42,7 +42,9 @@
       </div>
     </div>
     <div class="w-layout-hflex quick-stack">
-      <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" id="w-node-_71593649-4a5c-4b44-ac00-25a83cb1cba7-2e98a119" data-w-id="71593649-4a5c-4b44-ac00-25a83cb1cba7" href="#" class="press-card w-inline-block">
+      <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url"
+         id="w-node-_71593649-4a5c-4b44-ac00-25a83cb1cba7-2e98a119" data-w-id="71593649-4a5c-4b44-ac00-25a83cb1cba7"
+         href="#" class="press-card">
         <div class="card-image">
           <img [src]="news.image_thumbnail_medium" loading="lazy" width="373.3333435058594" height="260" alt=""
                class="image">
@@ -52,7 +54,7 @@
           <div class="card-content big">
             <div class="heading-5 dark">{{ news.header }}</div>
             <div class="body-copy sm dark">
-              <span class="ellipsis">{{ news.body | truncateHtml:1000 }}</span><br>
+              <span class="ellipsis" [innerHTML]="news.body | truncateHtml:1000"></span><br>
             </div>
           </div>
         </div>

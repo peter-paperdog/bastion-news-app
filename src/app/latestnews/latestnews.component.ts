@@ -4,8 +4,9 @@ import {CommonModule, JsonPipe, NgIf} from '@angular/common';
 import {TruncateHtmlPipe} from '../truncate-html.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Pressroom} from "../models/pressroom.model";
-import {CustomSelectComponent} from "../custom-select/custom-select.component";
+import {CustomDropdownComponent} from "../custom-dropdown/custom-dropdown.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {SearchformComponent} from "../searchform/searchform.component";
 
 @Component({
   selector: 'app-latestnews',
@@ -16,8 +17,9 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     TruncateHtmlPipe,
     CommonModule,
     FormsModule,
+    SearchformComponent,
     ReactiveFormsModule,
-    CustomSelectComponent,
+    CustomDropdownComponent,
   ],
   templateUrl: './latestnews.component.html',
   styleUrls: ['./latestnews.component.css'],

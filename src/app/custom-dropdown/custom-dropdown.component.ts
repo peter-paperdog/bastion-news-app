@@ -2,16 +2,16 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule, JsonPipe, NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-custom-select',
-  templateUrl: './custom-select.component.html',
+  selector: 'app-custom-dropdown',
+  templateUrl: './custom-dropdown.component.html',
   standalone: true,
   imports: [
     NgIf,
     CommonModule,
   ],
-  styleUrls: ['./custom-select.component.css']
+  styleUrls: ['./custom-dropdown.component.css']
 })
-export class CustomSelectComponent {
+export class CustomDropdownComponent {
   @Input() options: string[] = [];
   @Input() selectedOption: string = '';
   @Output() optionSelected: EventEmitter<string> = new EventEmitter<string>();
