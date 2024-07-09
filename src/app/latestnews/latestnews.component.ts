@@ -5,6 +5,7 @@ import {TruncateHtmlPipe} from '../truncate-html.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Pressroom} from "../models/pressroom.model";
 import {CustomSelectComponent} from "../custom-select/custom-select.component";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-latestnews',
@@ -19,7 +20,23 @@ import {CustomSelectComponent} from "../custom-select/custom-select.component";
     CustomSelectComponent
   ],
   templateUrl: './latestnews.component.html',
-  styleUrls: ['./latestnews.component.css']
+  styleUrls: ['./latestnews.component.css'],
+  animations: [
+    trigger('buttonOverlayAnimation', [
+      state('default', style({
+        transform: 'translate3d(-104%, 0, 0)'
+      })),
+      state('active', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      transition('default => active', [
+        animate('0.3s ease-in-out')
+      ]),
+      transition('active => default', [
+        animate('0.3s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class LatestnewsComponent implements OnInit {
   newsData: any[] = [];
@@ -34,6 +51,7 @@ export class LatestnewsComponent implements OnInit {
   filteredNewsData: any[] = [];
   contentTypes = ['All content', 'pressrelease', 'news', 'blog_post', 'event', 'image', 'video', 'document', 'contact_person'];
   selectedContentType: string = 'All content';
+  buttonOverlayState = 'default';
 
   constructor(private newsRoomsSrv: NewsroomsService) {
   }
@@ -173,7 +191,6 @@ export class LatestnewsComponent implements OnInit {
     }
   }
 
-
   onContentTypeSelected(selectedOption: string): void {
     this.selectedContentType = selectedOption;
     this.applyFilters();
@@ -184,5 +201,13 @@ export class LatestnewsComponent implements OnInit {
     this.selectedTag = selectedOption;
     this.applyFilters();
     this.search();
+  }
+
+  onMouseOver() {
+    this.buttonOverlayState = 'active';
+  }
+
+  onMouseOut() {
+    this.buttonOverlayState = 'default';
   }
 }
