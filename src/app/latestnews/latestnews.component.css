@@ -107,6 +107,7 @@
 .press-card {
   flex: 0 0 calc(32% - 8px);
   box-sizing: border-box;
+  height: 750px;
 }
 
 @media screen and (max-width: 991px) {
@@ -120,7 +121,32 @@
     flex: 0 0 calc(100% - 8px);
   }
 }
+
+@media screen and (max-width: 479px) {
+  .press-card {
+  }
+}
+
+.press-card img {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .press-card img {
+    aspect-ratio: 16/9;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .press-card img {
+    aspect-ratio: 1/1;
+  }
+}
+
 .dropdown {
   text-transform: capitalize;
 }
-
+.customsize {
+  height: 67px;
+}

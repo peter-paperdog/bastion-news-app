@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {CustomDropdownComponent} from "../custom-dropdown/custom-dropdown.component";
 import {Pressroom} from "../models/pressroom.model";
 import {NewsroomsService} from "../newsrooms.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-searchform',
@@ -11,7 +12,8 @@ import {NewsroomsService} from "../newsrooms.service";
   imports: [
     ReactiveFormsModule,
     CustomDropdownComponent,
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   styleUrls: ['./searchform.component.css']
 })

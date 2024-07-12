@@ -13,7 +13,7 @@
       <div class="news-content">
         <div class="date main-date">{{ newsData[0].published_at.text | date: 'dd MMMM yyyy' }}</div>
         <div class="card-content big">
-          <div class="heading-5 dark">{{ newsData[0].header }}</div>
+          <div class="heading-5 dark" [innerHTML]="newsData[0].header"></div>
           <div class="body-copy sm dark" [innerHTML]="newsData[0].body | truncateHtml:400"><br></div>
         </div>
       </div>
@@ -52,9 +52,9 @@
         <div class="news-content">
           <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
           <div class="card-content big">
-            <div class="heading-5 dark">{{ news.header }}</div>
-            <div class="body-copy sm dark">
-              <span class="ellipsis" [innerHTML]="news.body | truncateHtml:1000"></span><br>
+            <div class="heading-5 dark" [innerHTML]=" news.header"></div>
+            <div class="body-copy sm dark customsize">
+              <span class="ellipsis" [innerHTML]="news.body | truncateHtml:100"></span><br>
             </div>
           </div>
         </div>

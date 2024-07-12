@@ -1913,7 +1913,7 @@
 }
 
 .news-section {
-  padding: var(--top-padding--main) var(--side-padding--main);
+  padding: 64px;
   background-color: var(--color--light-grey);
   border-radius: 64px;
   width: 100%;
