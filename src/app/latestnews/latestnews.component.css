@@ -107,9 +107,11 @@
 .press-card {
   flex: 0 0 calc(32% - 8px);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 750px;
 }
-
 @media screen and (max-width: 991px) {
   .press-card {
     flex: 0 0 calc(48% - 8px);
@@ -122,25 +124,15 @@
   }
 }
 
-@media screen and (max-width: 479px) {
-  .press-card {
-  }
-}
-
 .press-card img {
   width: 100%;
   height: auto;
-}
-
-@media screen and (max-width: 767px) {
-  .press-card img {
-    aspect-ratio: 16/9;
-  }
+  aspect-ratio: 16 / 9;
 }
 
 @media screen and (max-width: 479px) {
   .press-card img {
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -149,4 +141,7 @@
 }
 .customsize {
   height: 67px;
+}
+.card-image {
+  height: auto;
 }
