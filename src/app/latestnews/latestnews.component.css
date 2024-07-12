@@ -22,7 +22,7 @@
   backdrop-filter: blur(12px);
 }
 
-.main-news .heading-5 {
+.main-news .heading-6 {
   color: #FFFFFF !important;
 }
 
@@ -34,7 +34,7 @@
   background-color: #041F35 !important;
 }
 
-.press-card:hover .heading-5 {
+.press-card:hover .heading-6 {
   color: #FFFFFF !important;
 }
 
@@ -42,7 +42,7 @@
   color: #E7EBEF !important;
 }
 
-.heading-5 {
+.heading-6 {
   transition: color 0.35s ease-in-out !important;
 }
 

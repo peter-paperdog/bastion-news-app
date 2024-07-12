@@ -583,7 +583,7 @@
   color: var(--color--light-grey);
 }
 
-.heading-5 {
+.heading-6 {
   font-family: var(--font--main);
   color: var(--color--white);
   font-size: var(--heading--h6);
@@ -592,7 +592,7 @@
   display: block;
 }
 
-.heading-5.dark {
+.heading-6.dark {
   color: var(--color--blue);
 }
 
