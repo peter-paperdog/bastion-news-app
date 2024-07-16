@@ -224,20 +224,6 @@
   left: 64px;
 }
 
-.navbar {
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  background-color: #fff;
-  border-radius: 200px;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  max-width: none;
-  padding: 12px 12px 12px 20px;
-  text-decoration: none;
-  display: flex;
-}
-
 .vectors-wrapper {
   object-fit: cover;
   justify-content: center;
@@ -1054,34 +1040,6 @@
   display: flex;
 }
 
-.navbar-2 {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
-.navbar-holder {
-  z-index: 999;
-  padding-top: 1.5rem;
-  padding-right: var(--side-padding--main);
-  padding-left: var(--side-padding--main);
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
-.navbar-holder.inside-section {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.navbar-holder.absolute {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0%;
-  bottom: auto;
-  left: 0%;
-  right: 0%;
-}
 
 .container {
   grid-column-gap: 64px;
@@ -1091,63 +1049,6 @@
   width: 100%;
   margin-left: 0;
   margin-right: 0;
-  display: flex;
-}
-
-.nav-menu {
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  display: flex;
-}
-
-.navbar-inner {
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  display: flex;
-}
-
-.nav-link {
-  font-family: var(--font--main);
-  color: var(--color--blue);
-  text-transform: uppercase;
-  border-radius: 200px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  display: flex;
-}
-
-.nav-link:hover {
-  background-image: linear-gradient(rgba(4, 31, 53, .1), rgba(4, 31, 53, .1));
-}
-
-.nav-link:focus {
-  color: var(--color--white);
-  background-color: #041f35;
-}
-
-.nav-link.w--current {
-  background-color: var(--color--blue);
-  color: var(--color--white);
-}
-
-.nav-items {
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   display: flex;
 }
 
@@ -2589,21 +2490,6 @@
     max-width: 1000px;
   }
 
-  .navbar-inner {
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
-  }
-
-  .nav-link {
-    padding: 12px 16px;
-    font-size: 16px;
-  }
-
-  .nav-items {
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
-  }
-
   .logo-img {
     display: block;
   }
@@ -2641,12 +2527,6 @@
   .body-copy.short {
     width: auto;
     min-width: 440px;
-  }
-
-  .navbar {
-    max-width: 1680px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .hero-inner {
@@ -2693,34 +2573,6 @@
 
   .card-image {
     aspect-ratio: 16 / 9;
-  }
-
-  .navbar-holder.absolute {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-
-  .nav-menu, .navbar-inner {
-    grid-column-gap: 24px;
-    grid-row-gap: 24px;
-  }
-
-  .nav-link {
-    padding: 16px 24px;
-  }
-
-  .nav-link:hover {
-    background-image: linear-gradient(rgba(4, 31, 53, .05), rgba(4, 31, 53, .05));
-  }
-
-  .nav-link.w--current {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .nav-items {
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
   }
 
   .icon.large {

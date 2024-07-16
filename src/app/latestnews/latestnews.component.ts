@@ -60,7 +60,6 @@ export class LatestnewsComponent implements OnInit {
   pageCount: number = 1;
   isLoading = true;
 
-
   constructor(private newsRoomsSrv: NewsroomsService) {
   }
 
@@ -123,6 +122,7 @@ export class LatestnewsComponent implements OnInit {
   }
 
   search(): void {
+    this.isLoading = true;
     let formattedTags = this.selectedTag !== 'All categories' ? this.selectedTag.replace(/\s+/g, ',') : '';
     let formattedQuery = this.searchQuery ? this.searchQuery.trim() + '*' : '';
 
@@ -142,6 +142,7 @@ export class LatestnewsComponent implements OnInit {
           this.page = data.search_result.summary.page;
           this.pageCount = data.search_result.summary.page_count;
           this.checkIfAllLoaded();
+          this.isLoading = false;
         },
         (error) => {
           console.error('Error fetching search results:', error);
@@ -171,9 +172,11 @@ export class LatestnewsComponent implements OnInit {
           this.pageCount = data.search_result.summary.page_count;
           this.checkIfAllLoaded();
         }
+        this.isLoading = false;
       },
       (error: any) => {
         console.error('Error fetching more filtered news:', error);
+        this.isLoading = false;
       }
     );
   }
