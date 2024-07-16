@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/bastion-3766bb.webflow.css",
-              "src/assets/css/webflow.css",
+              //"src/assets/css/webflow.css",
               "src/assets/css/normalize.css"
             ],
             "scripts": [
@@ -91,7 +91,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/bastion-3766bb.webflow.css",
-              "src/assets/css/webflow.css",
+//              "src/assets/css/webflow.css",
               "src/assets/css/normalize.css"
             ],
             "scripts": [
