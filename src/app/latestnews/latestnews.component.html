@@ -3,7 +3,7 @@
     <div class="subpage-heading">
       <h2 class="heading-2">Latest news</h2>
     </div>
-    <a [href]="newsData[0].url" data-w-id="de50decc-8423-7e97-7680-4e91848f15a6"
+    <a [href]="newsData[0].url" target="_blank"
        style="background-color:rgb(255,255,255)" href="#" class="main-news">
       <div class="card-image">
         <img [src]="newsData[0].image" loading="lazy" width="608" height="352" alt=""
@@ -20,30 +20,51 @@
     </a>
   </div>
 </div>
-
 <div class="news-section">
   <div class="subpage-inner">
     <div class="filter-section" *ngIf="pressroom">
       <app-custom-dropdown class="dropdown"
-                         [options]="contentTypes"
-                         [selectedOption]="selectedContentType"
-                         (optionSelected)="onContentTypeSelected($event)"
+                           [options]="contentTypes"
+                           [selectedOption]="selectedContentType"
+                           (optionSelected)="onContentTypeSelected($event)"
       ></app-custom-dropdown>
       <app-custom-dropdown class="dropdown"
-                         [options]="tags"
-                         [selectedOption]="selectedTag"
-                         (optionSelected)="onTagSelected($event)"
+                           [options]="tags"
+                           [selectedOption]="selectedTag"
+                           (optionSelected)="onTagSelected($event)"
       ></app-custom-dropdown>
       <div class="search-field">
-        <img src="assets/images/Vectors-Wrapper_4.svg" loading="lazy" width="20" height="20" alt=""
-             class="vectors-wrapper-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <mask id="mask0_2828_9622" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20"
+                height="20">
+            <rect width="20" height="20" fill="#D9D9D9"/>
+          </mask>
+          <g mask="url(#mask0_2828_9622)">
+            <path
+              d="M15.9375 17L10.9583 12.0208C10.5417 12.3264 10.0848 12.566 9.58771 12.7396C9.09063 12.9132 8.5616 13 8.00063 13C6.61132 13 5.43056 12.5139 4.45833 11.5417C3.48611 10.5694 3 9.38889 3 8C3 6.61111 3.48611 5.43056 4.45833 4.45833C5.43056 3.48611 6.61111 3 8 3C9.38889 3 10.5694 3.48611 11.5417 4.45833C12.5139 5.43056 13 6.61132 13 8.00063C13 8.5616 12.9132 9.09063 12.7396 9.58771C12.566 10.0848 12.3264 10.5417 12.0208 10.9583L17 15.9375L15.9375 17ZM8 11.5C8.97222 11.5 9.79861 11.1597 10.4792 10.4792C11.1597 9.79861 11.5 8.97222 11.5 8C11.5 7.02778 11.1597 6.20139 10.4792 5.52083C9.79861 4.84028 8.97222 4.5 8 4.5C7.02778 4.5 6.20139 4.84028 5.52083 5.52083C4.84028 6.20139 4.5 7.02778 4.5 8C4.5 8.97222 4.84028 9.79861 5.52083 10.4792C6.20139 11.1597 7.02778 11.5 8 11.5Z"
+              fill="#949699"/>
+          </g>
+        </svg>
         <input class="searchinput search-label" type="text" [(ngModel)]="searchQuery" placeholder="Search News"
                (input)="search()">
       </div>
     </div>
-    <div class="w-layout-hflex quick-stack">
-      <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url"
-         id="w-node-_71593649-4a5c-4b44-ac00-25a83cb1cba7-2e98a119" data-w-id="71593649-4a5c-4b44-ac00-25a83cb1cba7"
+    <!-- Skeleton loader for the cards -->
+    <div class="w-layout-hflex quick-stack" *ngIf="isLoading">
+      <div class="press-card" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+        <div class="card-image">
+          <div id="image" class="skeleton-loader"></div>
+        </div>
+        <div class="press-card-body-loading">
+          <h3 class="skeleton-loader"></h3>
+          <p class="skeleton-loader"></p>
+          <p id="ether" class="skeleton-loader"></p>
+          <div id="button" class="skeleton-loader"></div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filteredNewsData && filteredNewsData.length > 0; else noItemsFound" class="w-layout-hflex quick-stack">
+      <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" target="_blank"
          href="#" class="press-card">
         <div class="card-image">
           <img [src]="news.image" loading="lazy" width="373.3333435058594" height="260" alt=""
@@ -52,7 +73,7 @@
         <div class="news-content">
           <div class="date">{{ news.published_at.text | date: 'dd MMMM yyyy' }}</div>
           <div class="card-content big">
-            <div class="heading-6 dark" [innerHTML]=" news.header"></div>
+            <div class="heading-6 dark" [innerHTML]="news.header| truncateHtml:50"></div>
             <div class="body-copy sm dark customsize">
               <span class="ellipsis" [innerHTML]="news.body | truncateHtml:100"></span><br>
             </div>
@@ -60,7 +81,13 @@
         </div>
       </a>
     </div>
-    <a class="button-secondary w-inline-block" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()">
+    <ng-template #noItemsFound>
+      <div class="no-items-found">
+        No items found
+      </div>
+    </ng-template>
+    <a *ngIf="shouldShowSeeMoreButton()" class="button-secondary w-inline-block" (mouseover)="onMouseOver()"
+       (mouseout)="onMouseOut()">
       <div class="primary-button-inner" style="filter: invert(0%) contrast(200%);">
         <div class="button-copy" (click)="loadMore($event)">See More<br></div>
       </div>

@@ -54,6 +54,12 @@ export class LatestnewsComponent implements OnInit {
   contentTypes = ['All content', 'pressrelease', 'news', 'blog_post', 'event', 'image', 'video', 'document', 'contact_person'];
   selectedContentType: string = 'All content';
   buttonOverlayState = 'default';
+  totalItems: number = 0;
+  totalSearchItems: number = 0;
+  page: number = 0;
+  pageCount: number = 1;
+  isLoading = true;
+
 
   constructor(private newsRoomsSrv: NewsroomsService) {
   }
@@ -68,15 +74,14 @@ export class LatestnewsComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.newsData = response.items;
+          this.isLoading = false;
           this.filteredNewsData = this.newsData.slice(0, this.limit);
+          this.totalItems = response.total_count;
+          this.checkIfAllLoaded();
         },
         (error) => {
           console.error('Error fetching news:', error);
-        },
-        () => {
-          if (this.filteredNewsData.length >= this.newsData.length) {
-            this.allLoaded = true;
-          }
+          this.isLoading = false;
         }
       );
   }
@@ -107,8 +112,8 @@ export class LatestnewsComponent implements OnInit {
 
     this.offset = 0;
     this.allLoaded = false;
+    this.checkIfAllLoaded();
   }
-
 
   matchTags(itemTags: any[], selectedTags: string): boolean {
     if (selectedTags === 'All categories') return true;
@@ -133,6 +138,10 @@ export class LatestnewsComponent implements OnInit {
         (data: any) => {
           this.searchResults = data.search_result.items || [];
           this.filteredNewsData = this.searchResults.slice(0, this.limit);
+          this.totalSearchItems = data.search_result.summary.nr_of_items;
+          this.page = data.search_result.summary.page;
+          this.pageCount = data.search_result.summary.page_count;
+          this.checkIfAllLoaded();
         },
         (error) => {
           console.error('Error fetching search results:', error);
@@ -157,19 +166,25 @@ export class LatestnewsComponent implements OnInit {
           this.allLoaded = true;
         } else {
           this.filteredNewsData = [...this.filteredNewsData, ...data.search_result.items];
+          this.totalSearchItems = data.search_result.summary.nr_of_items;
+          this.page = data.search_result.summary.page;
+          this.pageCount = data.search_result.summary.page_count;
+          this.checkIfAllLoaded();
         }
       },
       (error: any) => {
         console.error('Error fetching more filtered news:', error);
-      },
-      () => {
-        if (this.filteredNewsData.length >= this.newsData.length) {
-          this.allLoaded = true;
-        }
       }
     );
   }
 
+  checkIfAllLoaded(): void {
+    this.allLoaded = this.filteredNewsData.length >= this.totalItems || (this.page >= this.pageCount && this.filteredNewsData.length >= this.totalSearchItems);
+  }
+
+  shouldShowSeeMoreButton(): boolean {
+    return !this.allLoaded && (this.filteredNewsData.length < this.totalItems || this.page < this.pageCount);
+  }
 
   onContentTypeSelected(selectedOption: string): void {
     this.selectedContentType = selectedOption;
