@@ -81,7 +81,7 @@
         </div>
       </a>
     </div>
-    <ng-template #noItemsFound>
+    <ng-template #noItemsFound [ngIf]="isLoading">
       <div class="no-items-found">
         No items found
       </div>
