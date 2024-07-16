@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="filteredNewsData && filteredNewsData.length > 0; else noItemsFound" class="w-layout-hflex quick-stack">
+    <div *ngIf="!isLoading && filteredNewsData && filteredNewsData.length > 0; else noItemsFound" class="w-layout-hflex quick-stack">
       <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" target="_blank"
          href="#" class="press-card">
         <div class="card-image">
