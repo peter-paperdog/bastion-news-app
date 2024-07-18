@@ -105,7 +105,7 @@
 }
 
 .press-card {
-  flex: 0 0 calc(32% - 8px);
+  flex: 1 0 calc(32% - 8px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -116,7 +116,6 @@
   align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 @media screen and (max-width: 991px) {
@@ -165,13 +164,13 @@
 
   @media screen and (max-width: 991px) {
     .press-card {
-      flex: 0 0 calc(48% - 8px);
+      flex: 1 0 calc(48% - 8px);
     }
   }
 
   @media screen and (max-width: 767px) {
     .press-card {
-      flex: 0 0 calc(100% - 8px);
+      flex: 1 0 calc(100% - 8px);
     }
   }
 
