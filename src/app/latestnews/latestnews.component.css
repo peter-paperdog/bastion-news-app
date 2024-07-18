@@ -114,6 +114,9 @@
 
 .quick-stack {
   align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 991px) {
@@ -131,14 +134,22 @@
 .press-card img {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
 }
 
 @media screen and (max-width: 479px) {
-  .press-card img {
-    aspect-ratio: 1 / 1;
+  .image {
+    aspect-ratio: 1 / 1 !important;
   }
 }
+@media screen and (max-width: 767px) {
+  .image {
+    aspect-ratio: 1 / 1 !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .image {
+    aspect-ratio: 1 / 1 !important;
+  }
 
 .dropdown {
   text-transform: capitalize;
@@ -167,12 +178,10 @@
 .press-card img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;
 }
 
 @media screen and (max-width: 479px) {
   .press-card img {
-    aspect-ratio: 1 / 1;
   }
 }
 
