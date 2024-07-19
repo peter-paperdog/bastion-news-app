@@ -105,7 +105,8 @@
 }
 
 .press-card {
-  flex: 1 0 calc(32% - 8px);
+  flex: 1 1 calc(33.333% - 1.5rem);
+  max-width: calc(34.333% - 1.5rem);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -121,12 +122,14 @@
 @media screen and (max-width: 991px) {
   .press-card {
     flex: 0 0 calc(48% - 8px);
+    max-width: calc(48% - 8px);
   }
 }
 
 @media screen and (max-width: 767px) {
   .press-card {
     flex: 0 0 calc(100% - 8px);
+    max-width: calc(100% - 8px);
   }
 }
 
@@ -164,13 +167,15 @@
 
   @media screen and (max-width: 991px) {
     .press-card {
-      flex: 1 0 calc(48% - 8px);
+      flex: 1 1 calc(48% - 8px);
+      max-width: calc(49% - 8px);
     }
   }
 
   @media screen and (max-width: 767px) {
     .press-card {
-      flex: 1 0 calc(100% - 8px);
+      flex: 1 1 calc(100% - 8px);
+      max-width: calc(100% - 8px);
     }
   }
 
