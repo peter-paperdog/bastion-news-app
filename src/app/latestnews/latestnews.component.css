@@ -135,7 +135,6 @@
 
 .press-card img {
   width: 100%;
-  height: auto;
 }
 
 @media screen and (max-width: 479px) {
@@ -186,6 +185,8 @@
 
   @media screen and (max-width: 479px) {
     .press-card img {
+      width: 100%;
+      height: auto;
     }
   }
 

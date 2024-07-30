@@ -958,12 +958,11 @@
 .card-image {
   aspect-ratio: 3 / 2;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 8px!important;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: none;
-  height: 100%;
   display: flex;
   position: relative;
   overflow: hidden;
