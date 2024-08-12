@@ -1052,7 +1052,6 @@
 }
 
 .logo-img {
-  width: auto;
   display: none;
 }
 
@@ -3365,6 +3364,6 @@
   font-style: italic;
   font-display: swap;
 }
-.subpage-hero.main {
+.subpage-hero-main {
   padding: 0px 120px 120px 120px;
 }
