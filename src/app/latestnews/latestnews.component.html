@@ -1,8 +1,10 @@
-<div class="subpage-hero long" *ngIf="newsData && newsData.length > 0">
+<div class="subpage-hero">
   <div class="subpage-inner large">
-    <div class="subpage-heading">
-      <h2 class="heading-2">Latest news</h2>
-    </div>
+    <h2 class="heading-2">Latest news</h2>
+  </div>
+</div>
+<div class="subpage-hero main" *ngIf="newsData && newsData.length > 0">
+  <div class="subpage-inner large">
     <a [href]="newsData[0].url" target="_blank"
        style="background-color:rgb(255,255,255)" href="#" class="main-news">
       <div class="card-image">
@@ -63,7 +65,8 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!isLoading && filteredNewsData && filteredNewsData.length > 0; else noItemsFound" class="w-layout-hflex quick-stack">
+    <div *ngIf="!isLoading && filteredNewsData && filteredNewsData.length > 0; else noItemsFound"
+         class="w-layout-hflex quick-stack">
       <a *ngFor="let news of filteredNewsData" [id]="news.id" [href]="news.url" target="_blank"
          href="#" class="press-card">
         <div class="card-image">
